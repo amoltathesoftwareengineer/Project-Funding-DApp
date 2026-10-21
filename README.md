@@ -1,47 +1,39 @@
-# 💰 Project Funding DApp
+# Project Funding DApp
 
-A decentralized crowdfunding application built using Ethereum, Solidity, smart contracts, and React.js. The project demonstrates how blockchain technology can enable transparent and verifiable funding campaigns.
+A decentralized crowdfunding application built with **Solidity, Ethereum, Hardhat, React, and Ethers.js**. The platform enables users to create fundraising campaigns, contribute ETH, and manage campaign funds through smart contracts.
 
-## 📌 Project Overview
+## Overview
 
-Project Funding DApp allows users to create funding campaigns, contribute cryptocurrency, and monitor campaign progress through a decentralized application (DApp).
+Project Funding DApp demonstrates how blockchain technology can support transparent and decentralized crowdfunding. Campaign creation and contribution records are managed through an Ethereum smart contract, while the React frontend provides a simple interface for interacting with the application.
 
-Smart contracts manage campaign details and contributions on the blockchain, reducing reliance on a centralized funding platform.
+This project is intended for learning, development, and demonstration purposes.
 
-This project is intended for educational and development purposes.
+## Features
 
-## ✨ Features
+- **Create Campaigns:** Create fundraising campaigns with a title, description, funding goal, and duration.
+- **Contribute ETH:** Allow users to contribute ETH to active campaigns.
+- **Transparent Records:** Track campaign goals, deadlines, and amounts raised on the blockchain.
+- **Smart Contract Validation:** Enforce funding rules through Solidity.
+- **Claim Funds:** Allow campaign creators to claim funds when the campaign meets the contract's success conditions.
+- **Refund Support:** Support refunds for eligible contributions when a campaign fails to reach its goal.
+- **Wallet Integration:** Connect a browser wallet such as MetaMask.
+- **Automated Tests:** Test core smart contract functionality using Hardhat.
 
-- 🔗 Connect an Ethereum wallet using MetaMask
-- 📝 Create and manage funding campaigns
-- 💸 Contribute cryptocurrency to campaigns
-- 📊 Track campaign funding progress
-- 🔍 View campaign details and contributions
-- 🔐 Interact with Ethereum smart contracts
-- 📜 View transaction status and blockchain records
-- 📱 Responsive user interface
+## Technology Stack
 
-## 🛠️ Technologies Used
+| Technology | Purpose |
+|---|---|
+| Solidity | Smart contract development |
+| Ethereum | Blockchain execution environment |
+| Hardhat | Compilation, testing, and deployment |
+| JavaScript | Application logic |
+| React | Frontend user interface |
+| Vite | Frontend development server and build tool |
+| Ethers.js | Blockchain and wallet interaction |
+| MetaMask | Browser wallet integration |
+| Node.js and npm | Development environment |
 
-**Blockchain**
-- Ethereum
-- Solidity
-- Smart Contracts
-
-**Frontend**
-- React.js
-- JavaScript
-- HTML5
-- CSS3
-
-**Development Tools**
-- Hardhat
-- MetaMask
-- Ethers.js
-- Node.js
-- npm
-
-## 📂 Project Structure
+## Project Structure
 
 ```text
 Project-Funding-DApp/
@@ -52,72 +44,96 @@ Project-Funding-DApp/
 ├── test/
 │   └── Funding.test.js
 ├── client/
-│   ├── src/
-│   └── package.json
+│   ├── index.html
+│   ├── package.json
+│   └── src/
+│       ├── main.jsx
+│       ├── App.jsx
+│       └── style.css
+├── .gitignore
 ├── hardhat.config.js
 ├── package.json
-├── .gitignore
-└── README.md
+├── package-lock.json
+├── README.md
+└── LICENSE
 ```
 
-*The directory and file names above are a suggested structure. Adjust them to match the actual files in your repository.*
+*Note: `package-lock.json` will be present if npm has generated and committed it.*
 
-## 🚀 Getting Started
+## Prerequisites
 
-### Prerequisites
-
-Install the following tools:
+Install the following before running the application:
 
 - Node.js and npm
-- Git
 - MetaMask browser extension
+- Git
 
-### 1. Clone the Repository
+## Installation and Setup
+
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/amoltathasoftwareengineer/Project-Funding-DApp.git
+git clone https://github.com/amoltathesoftwareengineer/Project-Funding-DApp.git
 cd Project-Funding-DApp
 ```
 
-### 2. Install Dependencies
+### 2. Install smart contract dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Compile Smart Contracts
+### 3. Compile the smart contract
 
 ```bash
-npx hardhat compile
+npm run compile
 ```
 
-### 4. Run Smart Contract Tests
+### 4. Run automated tests
 
 ```bash
-npx hardhat test
+npm test
 ```
 
-### 5. Start a Local Blockchain
+Review the test output to confirm that the tests pass.
+
+## Deploy the Smart Contract Locally
+
+### 1. Start the local Hardhat blockchain
+
+Open a terminal in the project root and run:
 
 ```bash
-npx hardhat node
+npm run node
 ```
 
 Keep this terminal running.
 
-### 6. Deploy the Smart Contract
+### 2. Deploy the contract
 
-Open another terminal in the project directory and run:
+Open a second terminal in the project root and run:
 
 ```bash
-npx hardhat run scripts/deploy.js --network localhost
+npm run deploy:local
 ```
 
-Use the deployed contract address in the frontend configuration.
+Copy the deployed contract address printed in the terminal.
 
-### 7. Run the Frontend
+### 3. Configure the frontend
 
-If the frontend is located in the `client` directory:
+Open `client/src/App.jsx` and set the contract address:
+
+```javascript
+const CONTRACT_ADDRESS = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
+```
+
+Replace the placeholder with the actual address generated by your local deployment.
+
+**Important:** A local deployment address is specific to that local blockchain instance. If the local chain is reset, deploy the contract again and update the address.
+
+## Run the Frontend
+
+Open another terminal:
 
 ```bash
 cd client
@@ -125,51 +141,77 @@ npm install
 npm run dev
 ```
 
-Open the local URL displayed in the terminal and connect MetaMask to the configured development network.
+Open the local URL printed by Vite, usually:
 
-*These commands assume the project uses Hardhat and the suggested file structure. Update them if your implementation uses different tools or paths.*
+```text
+http://localhost:5173
+```
 
-## 🔄 How It Works
+## Configure MetaMask for Local Testing
 
-1. A user connects their Ethereum wallet.
-2. The user creates or browses funding campaigns.
-3. Contributors send funds through the campaign smart contract.
-4. The contract records contributions and updates campaign progress.
-5. Users can inspect campaign information and transaction records on the blockchain.
+Add or select a local network with these settings:
 
-## 🔐 Security Considerations
+- **Network name:** Hardhat Local
+- **RPC URL:** `http://127.0.0.1:8545`
+- **Chain ID:** `31337`
+- **Currency symbol:** ETH
 
-- Use a local blockchain or test network during development.
-- Never commit wallet private keys, seed phrases, or secret credentials.
-- Validate campaign inputs and enforce smart-contract access controls.
-- Test contribution handling, withdrawal rules, and failure cases.
-- Obtain an independent security review before any real-fund deployment.
+Use only development accounts and test funds on the local blockchain. Never import a development private key into a wallet containing real assets.
 
-## 🎯 Learning Objectives
+## How It Works
 
-- Understanding decentralized application architecture
-- Writing Solidity smart contracts
-- Integrating React with Ethereum
-- Connecting MetaMask to a DApp
-- Testing and deploying smart contracts
-- Understanding blockchain transactions
+1. A user connects their wallet to the application.
+2. The user creates a campaign by specifying its details, funding goal, and duration.
+3. Contributors send ETH to an eligible campaign.
+4. The smart contract records contributions and updates the amount raised.
+5. Once the campaign ends, the contract's conditions determine whether funds can be claimed or eligible refunds can be requested.
 
-## 🔮 Future Enhancements
+## Testing
 
-- Campaign deadlines and funding goals
-- Automated refund handling for unsuccessful campaigns
-- Campaign categories and search
-- Transaction history dashboard
-- Improved accessibility and responsive design
-- Smart-contract security testing
+Run the smart contract test suite:
 
-## 👨‍💻 Author
+```bash
+npm test
+```
+
+The tests cover core scenarios such as campaign creation, contribution accounting, and rejection of zero-value contributions.
+
+Only report tests as passing after verifying the actual command output.
+
+## Security Considerations
+
+- This project is a demonstration and has not been presented as professionally audited.
+- Smart contracts can contain vulnerabilities even when automated tests pass.
+- Do not use real funds or deploy to a production network without a security review.
+- Validate the contract's access control, deadline logic, and refund accounting before production use.
+
+## Future Improvements
+
+- Add campaign search, sorting, and filtering.
+- Display campaign transaction history and blockchain events.
+- Add frontend controls for claiming funds and requesting refunds.
+- Improve transaction status and error handling.
+- Add automated frontend tests and continuous integration.
+- Consider testnet deployment after security review.
+
+## Learning Outcomes
+
+This project provides practical exposure to:
+
+- Solidity smart contract development
+- Ethereum development with Hardhat
+- React-based dApp development
+- Wallet integration with Ethers.js
+- Smart contract compilation and testing
+- Local blockchain deployment and interaction
+
+## Author
 
 **Amol Tathe**
 
-- GitHub: [@amoltathasoftwareengineer](https://github.com/amoltathasoftwareengineer)
+- GitHub: [@amoltathesoftwareengineer](https://github.com/amoltathesoftwareengineer)
 - LinkedIn: [Amol Tathe](https://www.linkedin.com/in/amoltathesoftwareengineer/)
 
-## 📄 License
+## License
 
-No license has been specified yet.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
