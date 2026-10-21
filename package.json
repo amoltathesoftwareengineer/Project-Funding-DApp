@@ -1,0 +1,17 @@
+
+{
+  "name": "project-funding-dapp",
+  "version": "1.0.0",
+  "description": "Decentralized crowdfunding application using Ethereum and Solidity",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.17"
+  }
+}
